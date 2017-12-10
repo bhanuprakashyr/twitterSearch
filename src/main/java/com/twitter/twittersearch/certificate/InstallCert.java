@@ -1,4 +1,4 @@
-package com.twitter.twittersearch;/*
+package com.twitter.twittersearch.certificate;/*
  * Copyright 2006 Sun Microsystems, Inc.  All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -64,8 +64,8 @@ public class InstallCert {
             System.out.println("Usage: java InstallCert <host>[:port] [passphrase]");
             return;
         }
-
-        File file = new File("/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home/jre/lib/security/cacerts");
+        // cacerts full file path example /Library/Java/jdk/Contents/Home/jre/lib/security/cacerts"
+        File file = new File("cacertsFullFilePath");
         if (file.isFile() == false) {
             char SEP = File.separatorChar;
             File dir = new File(System.getProperty("java.home") + SEP
@@ -144,7 +144,8 @@ public class InstallCert {
         String alias = host + "-" + (k + 1);
         ks.setCertificateEntry(alias, cert);
 
-        OutputStream out = new FileOutputStream("/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home/jre/lib/security/cacerts");
+        // cacerts full file path example /Library/Java/jdk/Contents/Home/jre/lib/security/cacerts"
+        OutputStream out = new FileOutputStream("cacertsFullFilePath");
         ks.store(out, passphrase);
         out.close();
 
