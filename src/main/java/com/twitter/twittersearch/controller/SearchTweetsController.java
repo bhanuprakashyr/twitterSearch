@@ -1,6 +1,6 @@
 package com.twitter.twittersearch.controller;
 
-import com.twitter.twittersearch.TwitterSearchApllicationException;
+import com.twitter.twittersearch.TwitterSearchApplicationException;
 import com.twitter.twittersearch.model.Tweets;
 import com.twitter.twittersearch.service.TweetsSearchService;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class SearchTweetsController {
     private TweetsSearchService tweetsSearchService;
 
     @RequestMapping(value = "/{searchString}", method = RequestMethod.GET, produces = "application/json")
-    public Tweets searchForTweets(@PathVariable String searchString) throws TwitterSearchApllicationException {
+    public Tweets searchForTweets(@PathVariable String searchString) throws TwitterSearchApplicationException {
         LOGGER.info("Received Request : search for string {}", searchString);
         return tweetsSearchService.getTweets(searchString);
     }

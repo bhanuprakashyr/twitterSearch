@@ -1,6 +1,6 @@
 package com.twitter.twittersearch.rest;
 
-import com.twitter.twittersearch.TwitterSearchApllicationException;
+import com.twitter.twittersearch.TwitterSearchApplicationException;
 import com.twitter.twittersearch.model.Tweet;
 import com.twitter.twittersearch.model.Tweets;
 import org.slf4j.Logger;
@@ -18,12 +18,16 @@ import java.util.List;
 @Component
 public class TwitterRestClient {
 
-    @Autowired
-    private Twitter twitterApi;
+    private final Twitter twitterApi;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TwitterRestClient.class);
 
-    public Tweets getTweets(String searchString) throws TwitterSearchApllicationException {
+    @Autowired
+    public TwitterRestClient(Twitter twitterApi) {
+        this.twitterApi = twitterApi;
+    }
+
+    public Tweets getTweets(String searchString) throws TwitterSearchApplicationException {
         Tweets tweets = new Tweets();
         List<Tweet> tweetList = new ArrayList<>();
         try {
@@ -40,7 +44,7 @@ public class TwitterRestClient {
 
         } catch (TwitterException e) {
             LOGGER.error("Exception occurred while call Twitter rest Api Exception : {}",e);
-            throw new TwitterSearchApllicationException();
+            throw new TwitterSearchApplicationException("Exception occurred while getting tweets",e);
         }
         return tweets;
     }
