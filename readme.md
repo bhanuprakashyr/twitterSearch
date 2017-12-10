@@ -1,12 +1,12 @@
-##About
+## About
 Simple web app which provides a rest end point to get latest tweets containing a particular String in tweets contents.
 
-###Technologies used :
-Java 8 
-SpringBoot
-Twitter4j
-maven 3
-junit
+### Technologies used :
+* Java 8 
+* SpringBoot
+* Twitter4j
+* maven 3
+* junit
 
 ### How to run this application :
 mvn clean install java -jar target/twittersearch-0.0.1-SNAPSHOT.jar
